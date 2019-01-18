@@ -4,20 +4,14 @@
 <head>
     <meta charset="utf-8" />
     <title>Apotheke</title>
+    <script type="text/javascript" src="apothekeHandler.js"></script>
+
 </head>
 <body>
-    <p>Versicherungsnummer des Patienten</p>
-    <input type="text" id="Versicherungsnummer">
-    <p><input type="button" id="suchen" value="suchen" /></p>
-    <div id="daten">
-        <p>Offene Rezepte</p>
-        <select id="rezepte">
-            <option>26.5.2018</option>
-            <option>22.3.2017</option>
-        </select>
-        <p><div id="rezept">hier steht das ausgewählt rezept</div></p>
-
-        <p><input type="button" id="logout" value="Logout" /></p>
+    <p>insurancePolicyNumber from the patient</p>
+    <input type="text" id="insurancePolicyNumber">
+    <button type="button" onclick="searchPrescription()">Search</button>
+    <p><div id="rezept"></div></p>
     </div>
 
 

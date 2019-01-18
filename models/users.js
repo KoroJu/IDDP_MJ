@@ -14,11 +14,14 @@ const usersSchema = new Schema({
   doctor:{
    personalnumber: {
       type : String
+    },
+    insurancePolicyNumber:{
+      type: Array
     }
   },
   pharmacy: {
     pharmacyID: {
-      type : String    
+      type : String
       }
   }
 });
