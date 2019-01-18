@@ -103,8 +103,8 @@ function addPrescription()  {
 function getPatients(){
 
   var url  = "http://127.0.0.1:4000/api/users/" + currentDoc;
-  var xhr  = new XMLHttpRequest()
-  xhr.open('GET', url)
+  var xhr  = new XMLHttpRequest();
+  xhr.open('GET', url);
   xhr.onload = function () {
      var patients = JSON.parse(xhr.responseText);
       if (xhr.readyState == 4 && xhr.status == "200") {
