@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Arzt</title>
+
+    <script type="text/javascript" src="arztHandler.js"></script>
+
+  </head>
+  <body>
+
+    <input type="text" id="newPatientID" placeholder="enter Insurancecardnumber"> <br>
+    <input type="text" id="newPatientFirstname" placeholder="Firstname"> <br>
+    <input type="text" id="newPatientLastname" placeholder="Lastname">
+    <button type="button" onclick="addPatient()">ADD</button>
+
+
+    <br><br><br><br>
+
+    <select id="patientDropDown" placeholder="select patient...">
+
+    </select>
+
+    <br><br>
+
+    <input type="text" id="prescriptionDesc" value="" placeholder="prescription description...">
+    <button type="button" onclick="addPrescription()" >ADD PRESCRIPTION</button>
+
+
+
+  </body>
+</html>
