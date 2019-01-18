@@ -19,11 +19,8 @@ function searchPrescription(){
     const parsedData = JSON.parse(getRequest.responseText);
     console.log(parsedData);
     for(var i = 0; i<parsedData.length;i++){
-<<<<<<< HEAD
       var table = document.getElementById("prescription");
-=======
       console.log(table.rows.length-1);
->>>>>>> master
       var row = table.insertRow(1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
