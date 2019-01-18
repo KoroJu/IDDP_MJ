@@ -10,9 +10,14 @@
 <body>
     <p>insurancePolicyNumber from the patient</p>
     <input type="text" id="insurancePolicyNumber">
-    <button type="button" onclick="searchPrescription()">Search</button>
-    <p><div id="rezept"></div></p>
-    </div>
+    <input type="button" value="Search prescription" onclick="searchPrescription()">
+    <p><table style="width:80%" id="prescription">
+          <tr>
+            <th>insurancePolicyNumber</th>
+            <th>Date</th>
+            <th>Description</th>
+          </tr></p>
+
 
 
 </body>

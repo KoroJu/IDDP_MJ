@@ -13,7 +13,6 @@ router.get('/prescription', function(req, res,next){
 
 //get prescription by id
 router.get('/prescription/:insurancePolicyNumber', function(req, res,next){
-  console.log(req);
   Prescription.find({insurancePolicyNumber: req.params.insurancePolicyNumber}).then(function(prescription){
      res.send(prescription);
    }).catch(next);
