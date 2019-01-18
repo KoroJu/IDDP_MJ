@@ -12,15 +12,13 @@ const usersSchema = new Schema({
     required:[true, 'passwort fild is require']
   },
   doctor:{
-    "personalnumber": {
-      type : String,
-      required:[true, 'personalnumber fild is require']
+   personalnumber: {
+      type : String
     }
   },
   pharmacy: {
-    "pharmacyID": {
-      type : String,
-      required:[true, 'pharmacyID fild is require']
+    pharmacyID: {
+      type : String    
       }
   }
 });
