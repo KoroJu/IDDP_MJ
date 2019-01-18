@@ -26,7 +26,8 @@ function searchPrescription(){
       var cell3 = row.insertCell(2);
       cell1.innerHTML = parsedData[i].insurancePolicyNumber;
       cell2.innerHTML = parsedData[i].date;
-      cell3.innerHTML = parsedData[i].description;}
+      cell3.innerHTML = parsedData[i].description;
+    }
   });
 
   getRequest.open("GET", "http://127.0.0.1:4000/api/prescription/"+number);
