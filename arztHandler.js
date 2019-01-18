@@ -4,16 +4,51 @@ var currentDoc = "5c41f6f0281e7154e8456e6b";
 
 
 
-// function addPatient(){
-//
-//     var id = document.getElementById("newPatientID").value;
-//     var firstname = document.getElementById("newPatientFirstname").value;
-//     var lastname = document.getElementById("newPatientLastname").value;
-//
-//     var patient = { "firstname": firstname, }
-//
-//
-// }
+function addPatient(){
+
+    var patID = document.getElementById("newPatientID").value;
+    var url  = "http://127.0.0.1:4000/api/users/" + currentDoc;
+    var xhr  = new XMLHttpRequest()
+    xhr.open('GET', url)
+    xhr.onload = function () {
+       var doc = JSON.parse(xhr.responseText);
+        if (xhr.readyState == 4 && xhr.status == "200") {
+            console.table(doc);
+            console.log(doc.doctor.insurancePolicyNumber);
+            console.log("current patients list");
+            doc.doctor.insurancePolicyNumber.push(Number(patID));
+            console.log(doc.doctor.insurancePolicyNumber);
+            console.log("Patients added locally");
+
+            var url = "http://127.0.0.1:4000/api/users/" + currentDoc;
+
+            var data = doc;
+            var json2 = JSON.stringify(data);
+
+            var xhr2 = new XMLHttpRequest();
+            xhr2.open("PUT", url, true);
+            xhr2.setRequestHeader('Content-type','application/json; charset=utf-8');
+            xhr2.onload = function () {
+	             var patients = JSON.parse(xhr2.responseText);
+	             if (xhr2.readyState == 4 && xhr2.status == "200") {
+		               console.log(patients.doctor.insurancePolicyNumber);
+                   console.log("Patients added in DB");
+	                } else {
+		                  console.error(patients);
+	                   }
+                   }
+            xhr2.send(json2);
+
+
+           } else {
+               console.error(patients);
+              }
+    }
+    xhr.send(null);
+
+
+
+}
 
 
 function addPrescription()  {
@@ -23,7 +58,7 @@ function addPrescription()  {
     var doc = "BK-666"
     var desc = document.getElementById("prescriptionDesc").value;
       var pats = document.getElementById("patientDropDown");
-    // var selPatID = pats.options[pats.selectedIndex].text;
+    var selPatID = pats.options[pats.selectedIndex].text;
 
     var today = new Date();
     var dd = today.getDate();
@@ -40,7 +75,7 @@ function addPrescription()  {
 
     var url = "http://127.0.0.1:4000/api/prescription";
     var data = {};
-    data.insurancePolicyNumber = "testidhaltjetzt" ;    //selPatID
+    data.insurancePolicyNumber = selPatID ;    //selPatID
     data.personalnumber  = doc;
     data.description = desc;
     data.date = today;
