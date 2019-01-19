@@ -1,4 +1,4 @@
-
+var ids = [];
 
 
 function searchPrescription(){
@@ -20,11 +20,15 @@ function searchPrescription(){
 
   getRequest.addEventListener("load", () => {
     const parsedData = JSON.parse(getRequest.responseText);
+    if (getRequest.readyState != 4 && getRequest.status != "200") {
+      console.error(parsedData);
+      return;
+    }
     console.log(parsedData);
     for(var i = 0; i<parsedData.length;i++){
       var table = document.getElementById("prescription");
       console.log(table.rows.length-1);
-      var row = table.insertRow(1);
+      var row = table.insertRow(i+1);
       var cell1 = row.insertCell(0);
       var cell2 = row.insertCell(1);
       var cell3 = row.insertCell(2);
@@ -32,7 +36,10 @@ function searchPrescription(){
       cell1.innerHTML = parsedData[i].insurancePolicyNumber;
       cell2.innerHTML = parsedData[i].date;
       cell3.innerHTML = parsedData[i].description;
-      cell4.innerHTML = parsedData[i]._id;
+      cell4.innerHTML = i+1
+      ids[i] = parsedData[i]._id;
+      console.log(ids);
+
     }
     prescList(parsedData);
 
@@ -56,14 +63,8 @@ function prescList(prescriptions){
   console.log(prescriptions);
   console.log(prescriptions.length);
 
-
-  var length = select.options.length;
-  for (i = 0; i < length; i++) {
-    select.options[i] = null;
-  }
-
   for(var i = 0; i < prescriptions.length; i++) {
-    var id = prescriptions[i]._id;
+    var id = i+1;
     var elem = document.createElement("option");
     elem.textContent = id;
     elem.value = id;
@@ -77,7 +78,7 @@ function deletePrescription(){
   var redeemedPresc = prescs.options[prescs.selectedIndex].text;
   console.log("Redeemed prescription: " + redeemedPresc);
 
-  var url = "http://127.0.0.1:4000/api/prescription/" + redeemedPresc;
+  var url = "http://127.0.0.1:4000/api/prescription/" + ids[redeemedPresc-1];
   var xhr = new XMLHttpRequest();
   xhr.open("DELETE", url, true);
   xhr.onload = function () {
