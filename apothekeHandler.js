@@ -44,12 +44,18 @@ function searchPrescription(){
 
 
 function prescList(prescriptions){
+  var select = document.getElementById("prescriptionDropdown");
+    var i;
+    for(i = select.options.length - 1 ; i >= 0 ; i--)
+    {
+      select.remove(i);
+    }
+
 
   console.log("$$$$$$$$$$$$$$$$$");
   console.log(prescriptions);
   console.log(prescriptions.length);
 
-  var select = document.getElementById("prescriptionDropdown");
 
   var length = select.options.length;
   for (i = 0; i < length; i++) {

@@ -1,5 +1,5 @@
 var patients = [];
-var currentDoc = "5c41f6f0281e7154e8456e6b";
+var currentDoc = "5c42d245f02dd3508422bd2b";
 
 
 
@@ -33,6 +33,7 @@ function addPatient(){
 	             if (xhr2.readyState == 4 && xhr2.status == "200") {
 		               console.log(patients.doctor.insurancePolicyNumber);
                    console.log("Patients added in DB");
+                   getPatients();
 	                } else {
 		                  console.error(patients);
 	                   }
@@ -102,6 +103,14 @@ function addPrescription()  {
 
 function getPatients(){
 
+  var select = document.getElementById("patientDropDown");
+    var i;
+    for(i = select.options.length - 1 ; i >= 0 ; i--)
+    {
+      select.remove(i);
+    }
+
+
   var url  = "http://127.0.0.1:4000/api/users/" + currentDoc;
   var xhr  = new XMLHttpRequest();
   xhr.open('GET', url);
@@ -111,7 +120,6 @@ function getPatients(){
           console.table(patients);
           console.log(patients.doctor.insurancePolicyNumber.length);
 
-          var select = document.getElementById("patientDropDown");
           var ids = patients.doctor.insurancePolicyNumber;
           // for each patient element put ID in ids
 
